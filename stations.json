@@ -95,7 +95,7 @@
   "loc": 0,
   "a": "#e8a920",
   "b": "#b5560f",
-  "url": "https://beatfmabuja-atunwadigital.streamguys1.com/beatfmabuja",
+  "url": "https://beatfmlagos-atunwadigital.streamguys1.com/beatfmlagos",
   "img": "logos/beat-fm-abuja.png"
  },
  {
@@ -298,13 +298,14 @@
  },
  {
   "id": 24,
-  "n": "Brothers FM 90.5",
+  "n": "Raypower FM 100.5 Abuja",
   "s": "Live radio",
   "c": "waka",
   "loc": 0,
   "a": "#8e44c9",
   "b": "#3b1d78",
-  "url": "https://ascella.streamerr.co/listen/enoch_radio_95/radio.mp3"
+  "url": "https://streamlive2.hearthis.at:8000/9065169.ogg"
+    "img": "Raypower-abuja.png"
  },
  {
   "id": 25,
