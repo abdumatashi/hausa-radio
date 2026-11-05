@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hausa Radio</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Noto+Serif:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f8;--panel:#fff;--ink:#14204a;--mute:#5d6892;--line:#d9def0;--gold:#e8a920;--gold-ink:#3a2a00;--ind:#1b2a5a;--bar:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1737;--panel:#17235a;--ink:#f1f3fb;--mute:#a4aedb;--line:#2a3877;--gold:#f0b73a;--gold-ink:#2b1f00;--ind:#0a1230;--bar:#101a45}}
+:root[data-theme="dark"]{--bg:#0e1737;--panel:#17235a;--ink:#f1f3fb;--mute:#a4aedb;--line:#2a3877;--gold:#f0b73a;--gold-ink:#2b1f00;--ind:#0a1230;--bar:#101a45}
+*{box-sizing:border-box;margin:0}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.4 "Noto Sans",system-ui,sans-serif;max-width:560px;margin:0 auto;padding-bottom:170px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;padding:12px 16px 4px}
+.top{display:flex;gap:10px;align-items:center}
+h1{font:700 20px "Noto Serif",serif;white-space:nowrap}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 12px;height:44px}
+.search input{flex:1;min-width:0;background:none;border:0;color:inherit;font:inherit;height:100%}
+.search input::placeholder{color:var(--mute)}
+.ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);flex:none}
+svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 10px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:8px 16px;border-radius:999px;color:var(--mute);font-weight:600;border:1px solid transparent}
+.tab[aria-selected=true]{background:#22d3bd;color:#052e29}
+main{padding:6px 16px}
+.row{display:flex;align-items:center;gap:14px;padding:10px;margin-bottom:10px;background:var(--panel);border:1px solid var(--line);border-radius:18px;width:100%;text-align:left}
+.row.on{border-color:var(--gold);box-shadow:inset 4px 0 0 var(--gold)}
+.tile{width:60px;height:60px;border-radius:14px;flex:none;display:grid;place-items:center;font:700 20px "Noto Serif",serif;color:#fff;background-size:cover}
+.meta{flex:1;min-width:0}
+.meta b{display:block;font:700 17px "Noto Serif",serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta span{color:var(--mute);font-size:14px}
+.star{width:44px;height:44px;display:grid;place-items:center;color:var(--mute)}
+.star[aria-pressed=true]{color:var(--gold)}
+.star[aria-pressed=true] svg{fill:var(--gold)}
+.empty{padding:40px 12px;text-align:center;color:var(--mute)}
+.back{display:flex;align-items:center;gap:4px;padding:8px 6px;margin-bottom:4px;font-weight:600;color:var(--mute)}
+.sec{font:700 18px "Noto Serif",serif;margin:14px 4px 10px}
+
+.dock{position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;z-index:6;padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bar);border-top:1px solid var(--line)}
+.mini{display:flex;align-items:center;gap:12px;margin:10px 12px;padding:8px 10px;border-radius:16px;background:var(--ind);color:#fff;width:calc(100% - 24px)}
+.mini .tile{width:44px;height:44px;font-size:15px;border-radius:10px}
+.mini .meta b{font-size:15px}.mini .meta span{color:#b9c2ec;font-size:13px}
+.pp{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--gold-ink);display:grid;place-items:center;flex:none}
+.pp svg{fill:currentColor;stroke:none}
+nav{display:grid;grid-template-columns:repeat(4,1fr)}
+nav button{padding:8px 0 10px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:13px;color:var(--mute)}
+nav button[aria-current=true]{color:var(--ink);font-weight:600}
+nav button[aria-current=true] svg{color:var(--gold)}
+.sheet{position:fixed;inset:0;z-index:20;background:linear-gradient(180deg,#c3202f,#6a0e19);color:#fff;transform:translateY(100%);transition:transform .3s;overflow-y:auto;overscroll-behavior:contain;height:100vh;height:100dvh;padding:calc(10px + env(safe-area-inset-top,0px)) 22px calc(16px + env(safe-area-inset-bottom,0px));max-width:560px;margin:0 auto}
+.sheet.open{transform:none}
+.art{aspect-ratio:1;border-radius:24px;margin:6px auto 12px;width:min(86%,340px,34vh);width:min(86%,340px,30dvh);display:grid;place-items:center;position:relative;overflow:hidden;font:700 64px "Noto Serif",serif;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.art::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 50%,transparent 0 22px,rgba(255,255,255,.13) 22px 24px)}
+.art span{position:relative}
+.art.img::before{display:none}
+.eq{display:flex;gap:4px;align-items:flex-end;height:18px;margin:4px 0 0}
+.eq i{width:5px;height:6px;background:var(--gold);border-radius:2px}
+.playing .eq i{animation:eq 1s ease-in-out infinite}
+.playing .eq i:nth-child(2){animation-delay:.2s}.playing .eq i:nth-child(3){animation-delay:.45s}.playing .eq i:nth-child(4){animation-delay:.7s}
+@keyframes eq{50%{height:18px}}
+@media (prefers-reduced-motion:reduce){.playing .eq i{animation:none;height:14px}}
+.ptitle{font:700 22px "Noto Serif",serif}
+.psub{color:rgba(255,255,255,.82);margin-top:2px}
+.ctrl{display:flex;justify-content:space-between;align-items:center;margin:14px 0}
+.ctrl .big{width:68px;height:68px}
+.ctrl .big svg{width:30px;height:30px}
+.side{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff}
+.side[aria-pressed=true]{color:var(--gold)}
+.side[aria-pressed=true] svg.s{fill:var(--gold)}
+.close{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.1);color:#fff}
+.timer{display:none;gap:8px;flex-wrap:wrap;margin-top:6px}
+.timer.show{display:flex}
+.seek{display:none;margin-top:8px}
+.sk{display:none;font-weight:700;font-size:13px}
+.prog .sk{display:grid}
+.seek.show{display:block}
+.seek input[type=range]{width:100%;height:28px;accent-color:#fff}
+.st{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.82)}
+.skip{display:flex;justify-content:center;gap:14px;margin-top:10px}
+.skip button{padding:9px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.4);color:#fff;font-weight:600}
+.lock,.lock body{overflow:hidden}
+.sheet{visibility:hidden;transform:translateY(110%);transition:transform .3s,visibility 0s linear .3s}
+.sheet.open{visibility:visible;transform:none;transition:transform .3s,visibility 0s}
+.sheet{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+.sheet .close{flex:none}
+.art{flex:none;width:min(100%,34vh,340px);width:min(100%,34dvh,340px);max-width:none;margin:10px auto 12px;font-size:clamp(40px,11vh,64px)}
+.eq{flex:none;margin:4px 0 0}
+.ptitle{font-size:clamp(20px,3.6vh,26px);line-height:1.2}
+.seek{margin-top:8px}
+.skip{margin-top:4px}
+.ctrl{flex:none;margin:14px 6px 8px}
+.ctrl .big{width:min(84px,11vh);height:min(84px,11vh)}
+.side{width:48px;height:48px}
+.sheet .pp{background:#fff;color:#b3202e}
+.sheet .eq i{background:#fff}
+.sheet .timer button[aria-pressed=true]{background:#fff;color:#b3202e;border-color:#fff}
+.sheet .side[aria-pressed=true]{color:#fff}
+.sheet .side[aria-pressed=true] svg.s{fill:#fff}
+.timer button{padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#fff}
+.timer button[aria-pressed=true]{background:var(--gold);color:var(--gold-ink);border-color:var(--gold)}
+.note{margin-top:6px;color:rgba(255,255,255,.82);font-size:14px;min-height:20px}
+.toast{position:fixed;left:50%;bottom:150px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:30;max-width:88%;font-size:14px;display:none}
+.toast.show{display:block}
+.scrim{position:fixed;inset:0;background:rgba(5,10,30,.55);z-index:24;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.scrim.show{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(300px,82vw);z-index:25;background:var(--panel);color:var(--ink);border-right:1px solid var(--line);padding:calc(22px + env(safe-area-inset-top,0px)) 14px calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-100%);visibility:hidden;transition:transform .25s,visibility .25s;overflow:auto}
+.drawer.open{transform:none;visibility:visible}
+.drawer h2{font:700 22px "Noto Serif",serif;padding:0 10px 16px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.ditem{display:flex;align-items:center;gap:16px;width:100%;padding:14px 10px;border-radius:14px;text-align:left;font-weight:600}
+.ditem svg{color:var(--gold)}
+.ditem:hover{background:var(--bg)}
+.dsub{display:none;gap:8px;padding:2px 10px 10px 54px}
+.dsub.show{display:flex}
+.dsub button{padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-size:14px}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <button class="ic" id="menu" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search stations…" aria-label="Search stations"></label>
+    <button class="ic" id="theme" aria-label="Change theme"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+</header>
+<main id="list"></main>
+
+<div class="dock">
+  <button class="mini" id="mini" aria-label="Open player">
+    <div class="tile" id="mt">♪</div>
+    <div class="meta"><b id="mn">Choose a station</b><span id="ms">Tap a station to play</span></div>
+    <span class="pp" id="mpp" role="button" aria-label="Play or pause"><svg viewBox="0 0 24 24" id="mpi"><path d="M8 5v14l11-7z"/></svg></span>
+  </button>
+  <nav id="nav"></nav>
+</div>
+
+<section class="sheet" id="sheet" aria-label="Player">
+  <button class="close" id="close" aria-label="Close"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="art" id="art"><span id="ai"></span></div>
+  <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <h2 class="ptitle" id="pn"></h2>
+  <p class="psub" id="ps"></p>
+  <div class="seek" id="seek">
+    <input type="range" id="sk" min="0" max="1000" value="0" aria-label="Seek">
+    <div class="st"><span id="tcur">0:00</span><span id="tdur">--:--</span></div>
+  </div>
+  <div class="ctrl">
+    <button class="side" id="tm" aria-label="Sleep timer"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M5 3 2 6m20 0-3-3"/></svg></button>
+    <button class="side sk" id="sb" aria-label="Back 10 seconds">&minus;10</button><button class="pp big" id="pp" aria-label="Play or pause"><svg viewBox="0 0 24 24" id="pi"><path d="M8 5v14l11-7z"/></svg></button><button class="side sk" id="sf" aria-label="Forward 10 seconds">+10</button>
+    <button class="side" id="pf" aria-label="Add to favorites"><svg class="s" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></button>
+  </div>
+  <div class="timer" id="timer"><span style="width:100%;color:rgba(255,255,255,.82)">Sleep timer:</span></div>
+  <p class="note" id="note"></p>
+</section>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Menu">
+  <h2>Hausa Radio</h2>
+  <button class="ditem" id="d-rate"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Rate us</button>
+  <button class="ditem" id="d-share"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>
+  <button class="ditem" id="d-more"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>More apps</button>
+  <button class="ditem" id="d-set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Settings</button>
+  <div class="dsub" id="d-sub"><button id="d-light">Light</button><button id="d-dark">Dark</button></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* Stations load from stations.json (same folder). */
+let S=[];
+const T=[["gida","Home"],["ng","Nigeria"],["fav","Favorites"],["rec","Recents"],["loc","Nearby"],["waka","Music"],["labarai","News"],["addini","Religion"],["wasanni","Sports"]];
+const $=i=>document.getElementById(i);
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let view=null,fav=ld("fav",[]),rec=ld("rec",[]),cur=null,playing=false,tab="gida",tmr=null,tmin=0;
+const au=new Audio();
+const ini=n=>n.split(" ").slice(0,2).map(w=>w[0]).join("");
+const grad=s=>`linear-gradient(135deg,${s.a},${s.b})`;
+const bg=s=>s.img?`url(${s.img}) center/cover`:grad(s);
+const ico={home:'<path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',pin:'<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>',find:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'};
+
+function toast(t){const e=$("toast");e.textContent=t;e.className="toast show";clearTimeout(toast.t);toast.t=setTimeout(()=>e.className="toast",3200)}
+
+function list(){
+  if(view){detail();return}
+  if(tab=="ng"){ng();return}
+  const q=$("q").value.trim().toLowerCase();
+  let r=S.filter(s=>tab=="gida"||(tab=="fav"&&fav.includes(s.id))||(tab=="rec"&&rec.includes(s.id))||(tab=="loc"&&s.loc)||s.c==tab);
+  if(tab=="rec")r.sort((x,y)=>rec.indexOf(x.id)-rec.indexOf(y.id));
+  if(q)r=S.filter(s=>(s.n+" "+s.s).toLowerCase().includes(q));
+  $("list").innerHTML=r.length?"":'<p class="empty">'+(tab=="fav"?"No stations here yet. Tap the star on a station to save it.":"No stations found.")+"</p>";
+  r.forEach(s=>{
+    const d=document.createElement("div");d.className="row"+(cur&&cur.id==s.id?" on":"");
+    d.innerHTML=`<button class="meta-btn" style="display:flex;gap:14px;align-items:center;flex:1;min-width:0;text-align:left"><div class="tile" style="background:${bg(s)}">${s.img?"":ini(s.n)}</div><div class="meta"><b>${s.n}</b><span>${s.s}${s.progs?", "+s.progs.length+" programs":""}</span></div></button><button class="star" aria-label="Favorite" aria-pressed="${fav.includes(s.id)}"><svg viewBox="0 0 24 24">${ico.star}</svg></button>`;
+    d.firstChild.onclick=()=>{if(s.progs){view=s.id;list();scrollTo(0,0)}else play(s)};
+    d.lastChild.onclick=()=>{togFav(s.id)};
+    $("list").appendChild(d)});
+}
+function rowEl(o,star,tap){
+  const d=document.createElement("div");d.className="row"+(cur&&cur.id==o.id?" on":"");
+  d.innerHTML=`<button style="display:flex;gap:14px;align-items:center;flex:1;min-width:0;text-align:left"><div class="tile" style="background:${bg(o)}">${o.img?"":ini(o.n)}</div><div class="meta"><b>${o.n}</b><span>${o.s}</span></div></button>`+(star?`<button class="star" aria-label="Favorite" aria-pressed="${fav.includes(o.id)}"><svg viewBox="0 0 24 24">${ico.star}</svg></button>`:"");
+  d.firstChild.onclick=tap;if(star)d.lastChild.onclick=()=>togFav(o.id);
+  return d}
+function detail(){
+  const s=S.find(x=>x.id==view),el=$("list");
+  el.innerHTML='<button class="back" id="back"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg>Back</button><h3 class="sec">Live</h3>';
+  $("back").onclick=()=>{view=null;list()};
+  el.appendChild(rowEl(s,true,()=>play(s)));
+  const h=document.createElement("h3");h.className="sec";h.textContent="Programs";el.appendChild(h);
+  s.progs.forEach((p,i)=>{const o={id:100*s.id+i+1,fid:s.id,n:p[0],s:p[1],url:p[2],img:s.img,a:s.a,b:s.b};el.appendChild(rowEl(o,false,()=>play(o)))});
+}
+const PAL=[["#e8a920","#b5560f"],["#1f9d7a","#0b5a47"],["#d6453d","#7b1d2e"],["#8e44c9","#3b1d78"],["#2d7de0","#133b8f"],["#e0792d","#8f3a13"],["#d93b8a","#7b1450"],["#3aa655","#145c2c"]];
+let NG=null,ngMsg="",RB=null;
+async function rbHosts(){
+  if(!RB){try{const d=await(await fetch("https://all.api.radio-browser.info/json/servers")).json();RB=[...new Set(d.map(x=>x.name))].sort(()=>Math.random()-.5)}catch(e){RB=[]}RB.push("de1.api.radio-browser.info")}
+  return RB}
+async function rbGet(path){let n=0;for(const h of await rbHosts()){if(n++>=4)break;try{const r=await fetch("https://"+h+path);if(r.ok)return await r.json()}catch(e){}}throw 0}
+function exRow(o){
+  const d=document.createElement("div");d.className="row"+(cur&&cur.id==o.id?" on":"");
+  const b=document.createElement("button");b.style.cssText="display:flex;gap:14px;align-items:center;flex:1;min-width:0;text-align:left";
+  const t=document.createElement("div");t.className="tile";t.style.background=grad(o);t.textContent=ini(o.n);
+  const m=document.createElement("div");m.className="meta";
+  const bn=document.createElement("b");bn.textContent=o.n;const sp=document.createElement("span");sp.textContent=o.s;
+  m.append(bn,sp);b.append(t,m);d.append(b);
+  if(o.fav){const im=new Image();im.onload=()=>{o.img=o.fav;t.style.background=bg(o);t.textContent=""};im.src=o.fav}
+  b.onclick=()=>play(o);return d}
+async function ngLoad(){
+  ngMsg="Loading Nigerian stations…";ng();
+  const p=new URLSearchParams({countrycode:"NG",hidebroken:"true",order:"votes",reverse:"true",limit:"300"});
+  if(location.protocol=="https:")p.set("is_https","true");
+  try{
+    const d=await rbGet("/json/stations/search?"+p);
+    d.sort((a,b)=>/hausa/i.test(b.language||"")-/hausa/i.test(a.language||""));
+    const seen=new Set();
+    NG=d.filter(x=>{const k=(x.name||"").trim().toLowerCase();if(!k||!(x.url_resolved||x.url)||seen.has(k))return false;seen.add(k);return true}).map((x,i)=>{
+      const g=PAL[i%8],tg=(x.tags||"").split(",").filter(Boolean).slice(0,2).join(", ");
+      return{id:"x"+x.stationuuid,n:x.name.trim(),s:[x.state,tg].filter(Boolean).join(", ")||"Nigeria",url:x.url_resolved||x.url,a:g[0],b:g[1],ex:true,fav:/^https:/.test(x.favicon||"")?x.favicon:""}});
+    ngMsg=NG.length?"":"No stations found."
+  }catch(e){NG=null;ngMsg="Couldn’t load Nigerian stations. Check your internet connection and try again."}
+  ng()}
+function ng(){
+  if(tab!="ng")return;
+  const el=$("list");el.innerHTML="";
+  if(NG===null&&!ngMsg){ngLoad();return}
+  const note=(txt,btn)=>{const p=document.createElement("p");p.className="empty";p.textContent=txt;el.appendChild(p);
+    if(btn){const b=document.createElement("button");b.className="tab";b.style.cssText="display:block;margin:0 auto;background:#22d3bd;color:#052e29";b.textContent="Try again";b.onclick=()=>{NG=null;ngMsg="";ng()};el.appendChild(b)}};
+  if(ngMsg){note(ngMsg,NG===null&&!/Loading/.test(ngMsg));return}
+  const q=$("q").value.trim().toLowerCase();
+  const r=NG.filter(o=>!q||(o.n+" "+o.s).toLowerCase().includes(q));
+  if(!r.length)note("No stations found.");
+  r.forEach(o=>el.appendChild(exRow(o)));
+  note("Station list from Radio Browser (radio-browser.info)")}
+function tabs(){
+  $("tabs").innerHTML="";
+  T.forEach(([k,l])=>{const b=document.createElement("button");b.className="tab";b.role="tab";b.textContent=l;b.setAttribute("aria-selected",k==tab);b.onclick=()=>{view=null;tab=k;$("q").value="";tabs();list();nav()};$("tabs").appendChild(b)});
+}
+function nav(){
+  const n=[["gida","Home",ico.home],["fav","Favorites",ico.star],["loc","Nearby",ico.pin],["find","Search",ico.find]];
+  $("nav").innerHTML="";
+  n.forEach(([k,l,i])=>{const b=document.createElement("button");b.innerHTML=`<svg viewBox="0 0 24 24">${i}</svg>${l}`;b.setAttribute("aria-current",k==tab);
+    b.onclick=()=>{if(k=="find"){$("q").focus();scrollTo(0,0)}else{view=null;tab=k;tabs();list();nav()}};$("nav").appendChild(b)});
+}
+function togFav(id){fav=fav.includes(id)?fav.filter(x=>x!=id):[...fav,id];sv("fav",fav);list();ui()}
+
+function play(s){
+  cur=s;const k=s.fid||s.id;rec=[k,...rec.filter(x=>x!=k)].slice(0,12);sv("rec",rec);
+  if(s.url){au.src=s.url;au.play().then(()=>{playing=true;ui()}).catch(()=>{playing=false;ui();toast(s.url.startsWith("http:")&&location.protocol=="https:"?"This stream uses an insecure http:// link, which https pages block. Ask the provider for an https link.":"This station can’t play right now. Check your internet connection.")})}
+  else{playing=true;toast("Demo station: no stream URL has been added yet.")}
+  try{if("mediaSession"in navigator)navigator.mediaSession.metadata=new MediaMetadata({title:s.n,artist:s.s,artwork:s.img?[{src:s.img,sizes:"200x200",type:"image/png"}]:[]})}catch(e){}
+  list();ui();open_();
+}
+function toggle(){
+  if(!cur){toast("Choose a station first.");return}
+  if(playing){au.pause();playing=false}
+  else if(cur.url){au.play().then(()=>{playing=true;ui()}).catch(()=>toast("Couldn’t play this station."));return}
+  else playing=true;
+  ui();
+}
+function ui(){
+  const pl='<path d="M8 5v14l11-7z"/>',pa='<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>';
+  if(cur){$("mt").textContent=cur.img?"":ini(cur.n);$("mt").style.background=bg(cur);$("mn").textContent=cur.n;$("ms").textContent=cur.s;
+    $("art").style.background=bg(cur);$("art").classList.toggle("img",!!cur.img);$("ai").textContent=cur.img?"":ini(cur.n);$("pn").textContent=cur.n;$("ps").textContent=cur.s;
+    $("pf").setAttribute("aria-pressed",fav.includes(cur.fid||cur.id));$("pf").style.visibility=cur.ex?"hidden":"visible"}
+  $("mpi").innerHTML=$("pi").innerHTML=playing?pa:pl;
+  $("sheet").classList.toggle("playing",playing);
+  seekUI();
+  try{if("mediaSession"in navigator)navigator.mediaSession.playbackState=playing?"playing":"paused"}catch(e){}
+}
+function open_(){$("sheet").classList.add("open");document.documentElement.classList.add("lock")}
+$("mini").onclick=e=>{if(e.target.closest("#mpp"))toggle();else if(cur)open_()};
+$("close").onclick=()=>{$("sheet").classList.remove("open");document.documentElement.classList.remove("lock")};
+$("pp").onclick=toggle;
+$("pf").onclick=()=>cur&&togFav(cur.fid||cur.id);
+$("q").oninput=()=>{view=null;list()};
+$("theme").onclick=()=>{const r=document.documentElement,d=r.dataset.theme?r.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=d?"light":"dark"};
+/* Mai kashewa */
+[15,30,60,0].forEach(m=>{const b=document.createElement("button");b.textContent=m?m+" min":"Off";b.setAttribute("aria-pressed",m==0);
+  b.onclick=()=>{tmin=m;clearTimeout(tmr);[...$("timer").querySelectorAll("button")].forEach(x=>x.setAttribute("aria-pressed",x==b));
+    $("note").textContent=m?"Playback will stop in "+m+" minutes.":"";
+    if(m)tmr=setTimeout(()=>{au.pause();playing=false;ui();$("note").textContent="Playback stopped.";$("timer").querySelectorAll("button")[3].setAttribute("aria-pressed",true)},m*60000)};
+  $("timer").appendChild(b)});
+$("tm").onclick=()=>$("timer").classList.toggle("show");
+function drawer(o){$("drawer").classList.toggle("open",o);$("scrim").classList.toggle("show",o);if(o)$("d-rate").focus()}
+$("menu").onclick=()=>drawer(true);
+$("scrim").onclick=()=>drawer(false);
+addEventListener("keydown",e=>{if(e.key=="Escape")drawer(false)});
+$("d-rate").onclick=()=>{drawer(false);toast("A Play Store rating link will go here once the app is published.")};
+$("d-share").onclick=async()=>{drawer(false);const d={title:"Hausa Radio",text:"Listen to live radio on Hausa Radio",url:location.href};try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.url);toast("Link copied.")}}catch(e){}};
+$("d-more").onclick=()=>{drawer(false);toast("More apps coming soon.")};
+$("d-set").onclick=()=>$("d-sub").classList.toggle("show");
+$("d-light").onclick=()=>{document.documentElement.dataset.theme="light"};
+$("d-dark").onclick=()=>{document.documentElement.dataset.theme="dark"};
+/* Background playback: lock-screen controls and auto-reconnect */
+try{if("mediaSession"in navigator){const ms=navigator.mediaSession;
+  ms.setActionHandler("play",()=>{if(cur&&!playing)toggle()});
+  ms.setActionHandler("pause",()=>{if(playing)toggle()});
+  ms.setActionHandler("stop",()=>{if(playing)toggle()});
+  ms.setActionHandler("seekbackward",()=>{if(cur&&cur.fid)au.currentTime=Math.max(0,au.currentTime-10)});
+  ms.setActionHandler("seekforward",()=>{if(cur&&cur.fid&&isFinite(au.duration))au.currentTime=Math.min(au.duration,au.currentTime+10)})}}catch(e){}
+let rt=0;
+const retry=()=>{if(playing&&cur&&cur.url&&rt<3){rt++;setTimeout(()=>{if(playing){au.src=cur.url;au.play().catch(()=>{})}},2000)}};
+au.addEventListener("error",retry);
+au.addEventListener("ended",()=>{if(cur&&!cur.fid)retry();else{playing=false;ui()}});
+au.addEventListener("playing",()=>{rt=0});
+let seeking=false;
+const fmt=s=>{if(!isFinite(s))return"0:00";s=Math.floor(s);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+function seekUI(){
+  const on=!!(cur&&cur.fid);$("seek").classList.toggle("show",on);$("sheet").classList.toggle("prog",on);
+  if(!on)return;
+  const d=au.duration,ok=isFinite(d)&&d>0;
+  $("sk").disabled=!ok;$("tdur").textContent=ok?fmt(d):"--:--";
+  if(!seeking){$("tcur").textContent=fmt(au.currentTime);$("sk").value=ok?Math.round(au.currentTime/d*1000):0}}
+["timeupdate","loadedmetadata","durationchange"].forEach(e=>au.addEventListener(e,seekUI));
+$("sk").oninput=()=>{seeking=true;if(isFinite(au.duration))$("tcur").textContent=fmt($("sk").value/1000*au.duration)};
+$("sk").onchange=()=>{if(isFinite(au.duration))au.currentTime=$("sk").value/1000*au.duration;seeking=false};
+$("sb").onclick=()=>{au.currentTime=Math.max(0,au.currentTime-10)};
+$("sf").onclick=()=>{if(isFinite(au.duration))au.currentTime=Math.min(au.duration,au.currentTime+10)};
+tabs();nav();
+function boot(d){S=d;list();ui()}
+if(window.__ST)boot(window.__ST);
+else fetch("stations.json").then(r=>{if(!r.ok)throw 0;return r.json()}).then(boot).catch(()=>{$("list").innerHTML='<p class="empty">Couldn’t load stations.json. Open this page from a web host such as GitHub Pages, not directly from a file.</p>'});
+</script>
+</body>
+</html>

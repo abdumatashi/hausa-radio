@@ -1,0 +1,397 @@
+[
+ {
+  "id": 1,
+  "n": "BBC Hausa",
+  "s": "News",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#bb1919",
+  "b": "#6e0d0d",
+  "img": "logos/bbc-hausa.png",
+  "url": "https://stream.live.vc.bbcmedia.co.uk/bbc_hausa_radio",
+  "progs": [
+   [
+    "Shirin Safe",
+    "Morning show",
+    "http://kv78.studio24.site:80/bh/shirin-safe.mp3"
+   ],
+   [
+    "Shirin Hantsi",
+    "Mid-morning show",
+    "http://kv78.studio24.site:80/bh/shirin-hantsi.mp3"
+   ],
+   [
+    "Shirin Rana",
+    "Afternoon show",
+    "http://kv78.studio24.site:80/bh/shirin-rana.mp3"
+   ],
+   [
+    "Shirin Yamma",
+    "Evening show",
+    "http://kv78.studio24.site:80/bh/shirin-yamma.mp3"
+   ],
+   [
+    "Ra’ayi Riga",
+    "BBC Hausa program",
+    "http://kv78.studio24.site:80/bh/raayi-riga.mp3"
+   ]
+  ]
+ },
+ {
+  "id": 2,
+  "n": "DW Hausa",
+  "s": "News",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#0aa0f0",
+  "b": "#0b4f8a",
+  "img": "logos/dw-hausa.png",
+  "url": "https://stream.zeno.fm/8ptshqanfceuv",
+  "progs": [
+   [
+    "Shirin Safe",
+    "Morning show",
+    "https://radiodownloaddw-a.akamaihd.net/encoder/audio/mitschnitt/sendung-hau-morgen.mp3"
+   ],
+   [
+    "Shirin Rana",
+    "Afternoon show",
+    "https://radiodownloaddw-a.akamaihd.net/encoder/audio/mitschnitt/sendung-hau-mittag.mp3"
+   ],
+   [
+    "Shirin Yamma",
+    "Evening show",
+    "https://radiodownloaddw-a.akamaihd.net/encoder/audio/mitschnitt/sendung-hau-abend.mp3"
+   ]
+  ]
+ },
+ {
+  "id": 3,
+  "n": "RFI Hausa",
+  "s": "News",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#e2231a",
+  "b": "#8c1410",
+  "img": "logos/rfi-hausa.png",
+  "url": "https://rfienhaoussa64k.ice.infomaniak.ch/rfienhaoussa-64.mp3"
+ },
+ {
+  "id": 4,
+  "n": "VOA Hausa",
+  "s": "Suspended",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#2a4fb0",
+  "b": "#0b1f52",
+  "img": "logos/voa-hausa.png",
+  "url": "https://voa96.akacast.akamaistream.net/7/88/437878/v1/ibb.akacast.akamaistream.net/voa96"
+ },
+ {
+  "id": 5,
+  "n": "Beat FM 97.9",
+  "s": "Abuja",
+  "c": "waka",
+  "loc": 0,
+  "a": "#e8a920",
+  "b": "#b5560f",
+  "url": "https://beatfmabuja-atunwadigital.streamguys1.com/beatfmabuja",
+  "img": "logos/beat-fm-abuja.png"
+ },
+ {
+  "id": 6,
+  "n": "Kiss FM 99.9",
+  "s": "Abuja",
+  "c": "waka",
+  "loc": 0,
+  "a": "#1f9d7a",
+  "b": "#0b5a47",
+  "url": "https://mars.streamerr.co/8082/stream",
+  "img": "logos/kiss-fm-abuja.png"
+ },
+ {
+  "id": 7,
+  "n": "Eagles FM 102.3",
+  "s": "Abuja",
+  "c": "waka",
+  "loc": 0,
+  "a": "#d6453d",
+  "b": "#7b1d2e",
+  "url": "https://eagles1023fmabuja-atunwadigital.streamguys1.com/eagles1023fmabuja",
+  "img": "logos/eagles-fm-abuja.png"
+ },
+ {
+  "id": 8,
+  "n": "Arewa Radio 93.1",
+  "s": "Kano",
+  "c": "waka",
+  "loc": 1,
+  "a": "#8e44c9",
+  "b": "#3b1d78",
+  "url": "https://arewa931-atunwadigital.streamguys1.com/arewa931",
+  "img": "logos/arewa-radio-kano.png"
+ },
+ {
+  "id": 9,
+  "n": "Freedom Radio",
+  "s": "Kano",
+  "c": "labarai",
+  "loc": 1,
+  "a": "#2d7de0",
+  "b": "#133b8f",
+  "url": "https://stream.zeno.fm/t8bhnmek8mzuv",
+  "img": "logos/freedom-radio-kano.png"
+ },
+ {
+  "id": 10,
+  "n": "Rahma Radio 97.3",
+  "s": "Kano",
+  "c": "waka",
+  "loc": 1,
+  "a": "#e0792d",
+  "b": "#8f3a13",
+  "url": "https://cast1.my-control-panel.com/proxy/salim1/stream",
+  "img": "logos/rahma-radio-kano.png"
+ },
+ {
+  "id": 11,
+  "n": "Wazobia FM 95.1",
+  "s": "Kano",
+  "c": "waka",
+  "loc": 1,
+  "a": "#d93b8a",
+  "b": "#7b1450",
+  "url": "https://wazobiafmkano951-atunwadigital.streamguys1.com/wazobiafmkano951",
+  "img": "logos/wazobia-fm-kano.png"
+ },
+ {
+  "id": 12,
+  "n": "Cool FM 96.9",
+  "s": "Kano",
+  "c": "waka",
+  "loc": 1,
+  "a": "#3aa655",
+  "b": "#145c2c",
+  "url": "https://coolfmkano969-atunwadigital.streamguys1.com/coolfmkano969",
+  "img": "logos/cool-fm-kano.png"
+ },
+ {
+  "id": 13,
+  "n": "Dala FM 88.5",
+  "s": "Kano",
+  "c": "waka",
+  "loc": 1,
+  "a": "#e8a920",
+  "b": "#b5560f",
+  "url": "https://stream.zeno.fm/9zdvuszaanzuv",
+  "img": "logos/dala-fm-kano.png"
+ },
+ {
+  "id": 14,
+  "n": "Invicta FM 98.9",
+  "s": "Kaduna",
+  "c": "waka",
+  "loc": 0,
+  "a": "#1f9d7a",
+  "b": "#0b5a47",
+  "url": "https://media2.streambrothers.com:2020/stream/8098/;",
+  "img": "logos/invicta-fm-kaduna.png"
+ },
+ {
+  "id": 15,
+  "n": "Royal 93.3 FM",
+  "s": "Kaduna",
+  "c": "waka",
+  "loc": 0,
+  "a": "#d6453d",
+  "b": "#7b1d2e",
+  "url": "https://a8.asurahosting.com:7270/radio.mp3",
+  "img": "logos/royal-fm-kaduna.png"
+ },
+ {
+  "id": 16,
+  "n": "Tashar ’Yanci 103.1",
+  "s": "Kaduna",
+  "c": "waka",
+  "loc": 0,
+  "a": "#8e44c9",
+  "b": "#3b1d78",
+  "url": "https://stream.zeno.fm/n8d9x7g5qtzuv",
+  "img": "logos/tashar-yanci-kaduna.png"
+ },
+ {
+  "id": 17,
+  "n": "KTRS Katsina",
+  "s": "Katsina State Radio",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#2d7de0",
+  "b": "#133b8f",
+  "url": "https://radio.edus.ng/listen/ktrs/radio.mp3",
+  "img": "logos/ktrs-katsina.png"
+ },
+ {
+  "id": 18,
+  "n": "Legend FM 98.7",
+  "s": "Daura",
+  "c": "waka",
+  "loc": 0,
+  "a": "#e0792d",
+  "b": "#8f3a13",
+  "url": "https://stream.zeno.fm/cay110vfguhvv",
+  "img": "logos/legend-fm-daura.png"
+ },
+ {
+  "id": 19,
+  "n": "Martaba 88.9 FM",
+  "s": "Funtua",
+  "c": "waka",
+  "loc": 0,
+  "a": "#d93b8a",
+  "b": "#7b1450",
+  "url": "https://stream.zeno.fm/hy0mu2bbawpuv",
+  "img": "logos/martaba-fm-funtua.png"
+ },
+ {
+  "id": 20,
+  "n": "Kogi Radio 94.1",
+  "s": "Kogi",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#3aa655",
+  "b": "#145c2c",
+  "url": "https://streams.radio.co/scdae47edf/listen",
+  "img": "logos/kogi-radio.png"
+ },
+ {
+  "id": 21,
+  "n": "Grace FM 95.5",
+  "s": "Kogi",
+  "c": "waka",
+  "loc": 0,
+  "a": "#e8a920",
+  "b": "#b5560f",
+  "url": "https://s3.voscast.com:10437/stream",
+  "img": "logos/grace-fm-kogi.png"
+ },
+ {
+  "id": 22,
+  "n": "Radio Benue 95.0",
+  "s": "Makurdi, Benue",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#1f9d7a",
+  "b": "#0b5a47",
+  "url": "https://mira.streamerr.co/listen/radio_benue_makurdi/radio.mp3",
+  "img": "logos/radio-benue.png"
+ },
+ {
+  "id": 23,
+  "n": "ASKiNG Radio 98.5",
+  "s": "Speed FM",
+  "c": "waka",
+  "loc": 0,
+  "a": "#d6453d",
+  "b": "#7b1d2e",
+  "url": "https://stream.zeno.fm/udf8tf8542quv",
+  "img": "logos/asking-radio.png"
+ },
+ {
+  "id": 24,
+  "n": "Brothers FM 90.5",
+  "s": "Live radio",
+  "c": "waka",
+  "loc": 0,
+  "a": "#8e44c9",
+  "b": "#3b1d78",
+  "url": "https://ascella.streamerr.co/listen/enoch_radio_95/radio.mp3"
+ },
+ {
+  "id": 25,
+  "n": "NBS Lafia FM",
+  "s": "Lafia",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#2d7de0",
+  "b": "#133b8f",
+  "url": "https://nbsradio1.radioca.st/;",
+  "img": "logos/nbs-lafia.png"
+ },
+ {
+  "id": 26,
+  "n": "Nagari Radio",
+  "s": "",
+  "c": "waka",
+  "loc": 0,
+  "a": "#e0792d",
+  "b": "#8f3a13",
+  "url": "https://stream.zeno.fm/1p9k47ksdg8uv",
+  "img": "logos/nagari-radio-gombe.png"
+ },
+ {
+  "id": 27,
+  "n": "Globe FM 98.5",
+  "s": "Bauchi",
+  "c": "waka",
+  "loc": 0,
+  "a": "#d93b8a",
+  "b": "#7b1450",
+  "url": "https://golive.abdultechltd.com/listen/globe_fm_bauchi/radio.mp3",
+  "img": "logos/globe-fm-bauchi.png"
+ },
+ {
+  "id": 28,
+  "n": "Eagle Radio 96.5 FM",
+  "s": "Bauchi",
+  "c": "waka",
+  "loc": 0,
+  "a": "#3aa655",
+  "b": "#145c2c",
+  "url": "https://usa14.fastcast4u.com/proxy/eaglefmbau?mp=/1",
+  "img": "logos/eagle-radio-bauchi.png"
+ },
+ {
+  "id": 29,
+  "n": "BRC Radio",
+  "s": "Bauchi",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#e8a920",
+  "b": "#b5560f",
+  "url": "https://golive.abdultechltd.com/listen/brc_radio_bauchi/radio.mp3",
+  "img": "logos/brc-radio-bauchi.png"
+ },
+ {
+  "id": 30,
+  "n": "Jay 101.9 FM",
+  "s": "Jos",
+  "c": "waka",
+  "loc": 0,
+  "a": "#1f9d7a",
+  "b": "#0b5a47",
+  "url": "https://stream2.rcast.net/69640/",
+  "img": "logos/jay-fm-jos.png"
+ },
+ {
+  "id": 31,
+  "n": "BRTV Radio",
+  "s": "Maiduguri",
+  "c": "labarai",
+  "loc": 0,
+  "a": "#d6453d",
+  "b": "#7b1d2e",
+  "url": "https://radio.sternhost.com:8300/radio.mp3",
+  "img": "logos/brtv-radio-maiduguri.png"
+ },
+ {
+  "id": 32,
+  "n": "Peace FM 102.5",
+  "s": "Maiduguri",
+  "c": "waka",
+  "loc": 0,
+  "a": "#8e44c9",
+  "b": "#3b1d78",
+  "url": "https://peacefm-bapson.radioca.st/stream",
+  "img": "logos/peace-fm-maiduguri.png"
+ }
+]
